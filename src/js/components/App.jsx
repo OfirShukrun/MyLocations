@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Landing from './Landing';
-import categories from './Categories';
-import locations from './Locations';
+import Categories from './Categories';
+import Locations from './Locations';
 import { Link } from 'react-router-dom';
+import Test from './Test';
 
 const FourOhFour = () => {
   return (
@@ -20,8 +21,9 @@ const App = () => {
       <div className='app'>
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route path='/categories' component={categories} />
-          <Route path='/locations' component={locations} />
+          <Route path='/categories' component={Categories} />
+          <Route path='/locations' component={Locations} />
+          <Route path='/test' component={Test} />
           <Route component={FourOhFour} />
         </Switch>
       </div>
