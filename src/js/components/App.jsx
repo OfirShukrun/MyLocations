@@ -4,7 +4,6 @@ import Landing from './Landing';
 import Categories from './Categories';
 import Locations from './Locations';
 import { Link } from 'react-router-dom';
-import Test from './Test';
 
 const FourOhFour = () => {
   return (
@@ -23,7 +22,6 @@ const App = () => {
           <Route exact path="/" component={Landing} />
           <Route path='/categories' component={Categories} />
           <Route path='/locations' component={Locations} />
-          <Route path='/test' component={Test} />
           <Route component={FourOhFour} />
         </Switch>
       </div>

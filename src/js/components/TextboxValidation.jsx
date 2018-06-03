@@ -1,11 +1,9 @@
 import React from 'react';
 
 class Textbox extends React.Component {
-    constructor() {
-        super()
-        this.name = ""
+    state = {
+        name: ""
     }
-
     render() {
         return (
             <div>
@@ -25,7 +23,6 @@ class Textbox extends React.Component {
                     }}
                 />
             </div>
-
         )
     }
 }

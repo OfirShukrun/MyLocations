@@ -1,54 +1,45 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+//Need to pass the id variable to the deleteCategory function
+
 class Categories extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            term: '',
-            categories: [],
-            selectedCategories: [],
-            checkboxState: false
-        };
-    }
-    toggle = (event) => {
-        const id = event.target.id;
+    state = {
+        term: '',
+        categories: [],
+        checkboxState: false
+    };
+    toggle = ({ target: { id } }) => {
         this.setState({
             [id]: !this.state[id],
             checkboxState: true
         })
     };
+    deleteCategory = () => {
+        if (!this.state.checkboxState) {
+            alert('Please select category to delete')
+        } else {
+
+        }
+    }
     onInputChange = (event) => {
         this.setState({ term: event.target.value });
     };
     pushSelectedCategory = () => {
     };
     addCategory = (event) => {
+        event.preventDefault();
         if (this.state.term === '') {
             alert('Please name your category!')
-            event.preventDefault();
         } else {
             this.setState({
                 term: '',
                 categories: [...this.state.categories, this.state.term]
             });
-            event.preventDefault();
-        }
-    }
-    logState = () => {
-        console.log(this.state)
-    }
-    deleteCategory = () => {
-        if (this.state.checkboxState === false) {
-            alert('Please choose category for deleting it!')
-        } else {
-            this.setState({
-                selectedCategories: this.state.categories
-            });
         }
     }
     editCategory = () => {
-        if (this.state.checkboxState === false) {
+        if (!this.state.checkboxState) {
             alert("Please choose category for editing it!")
         } else {
             return;
@@ -72,8 +63,8 @@ class Categories extends Component {
                 {this.state.categories.map((category, index) =>
                     < button
                         key={index}
-                        id={`checkboxState${index}`}
-                        style={!this.state[`checkboxState${index}`] ?
+                        id={index}
+                        style={!this.state[index] ?
                             { borderColor: '' } : { border: '2px solid red' }}
                         onClick={this.toggle}>
                         {category}</button>)
