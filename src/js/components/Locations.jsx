@@ -5,8 +5,7 @@ import Toolbar from './Toolbar';
 const Locations = () => (
     <div className="locations">
         <h1>Locations</h1>
-        <p>Name : </p>
-        <input />
+        <p>Name : <input /></p>
         <p>Address : <input type="text" /></p>
         <p>Cordinates : <input type="text" /></p>
         <p>Category : <select>
