@@ -1,30 +1,27 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-/*Need to pass the id variable to the deleteCategory function*/
-
-
 class Categories extends Component {
     state = {
         term: '',
         categories: [],
-        count: 0,
+        count: 0
     };
 
-    toggle = (itemId) => () => {
-        const categories = this.state.categories.map((item) => {
-            if (item.id === itemId) {
-                item.isToggled = !item.isToggled;
-                return item;
+    toggle = (categoryId) => () => {
+        const categories = this.state.categories.map((category) => {
+            if (category.id === categoryId) {
+                category.isToggled = !category.isToggled;
+                return category;
             } else {
-                return item;
+                return category;
             }
         });
         this.setState({ categories })
     };
 
     deleteCategory = () => {
-        const unselectedCategories = this.state.categories.filter(item => !item.isToggled)
+        const unselectedCategories = this.state.categories.filter(category => !category.isToggled)
         this.setState({
             categories: unselectedCategories
         })
@@ -44,13 +41,11 @@ class Categories extends Component {
                 term: this.state.term,
                 isToggled: false
             };
-            console.log(`Add category, check state [BEFORE]`, this.state)
             this.state.categories.push(obj)
             this.setState({
                 term: '',
                 count: this.state.count + 1
             });
-            console.log(`Add category, check state [AFTER] ${this.state}`)
         }
     }
 
@@ -72,7 +67,6 @@ class Categories extends Component {
                 <div className='actions'>
                     <button className="delete" onClick={this.deleteCategory}>Delete</button>
                     <button className="edit" onClick={this.editCategory}>Edit</button>
-
                 </div>
                 <p>To add a new category, please enter category name.
                 </p>
