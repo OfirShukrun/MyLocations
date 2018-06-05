@@ -5,7 +5,9 @@ class Categories extends Component {
     state = {
         term: '',
         categories: [],
-        count: 0
+        count: 0,
+        warning: '',
+        plusText: 'Add'
     };
 
     toggle = (categoryId) => () => {
@@ -21,10 +23,17 @@ class Categories extends Component {
     };
 
     deleteCategory = () => {
-        const unselectedCategories = this.state.categories.filter(category => !category.isToggled)
-        this.setState({
-            categories: unselectedCategories
-        })
+        if (this.state.categories.some(category => !!category.isToggled)) {
+            const unselectedCategories = this.state.categories.filter(category => !category.isToggled)
+            this.setState({
+                categories: unselectedCategories,
+                warning: ''
+            })
+        } else {
+            this.setState({
+                warning: 'Please select category for deleting it'
+            })
+        }
     }
 
     onInputChange = (event) => {
@@ -34,7 +43,9 @@ class Categories extends Component {
     addCategory = (event) => {
         event.preventDefault();
         if (this.state.term === '') {
-            alert('Please name your category!')
+            this.setState({
+                warning: 'Please name you category!'
+            })
         } else {
             let obj = {
                 id: this.state.count,
@@ -44,22 +55,39 @@ class Categories extends Component {
             this.state.categories.push(obj)
             this.setState({
                 term: '',
-                count: this.state.count + 1
+                count: this.state.count + 1,
+                warning: ''
             });
+        }
+        if (this.state.plusText === 'Save') {
+            this.setState({
+                plusText: 'Add'
+            })
         }
     }
 
     editCategory = () => {
-        if (!this.state.checkboxState) {
-            alert("Please choose category for editing it!")
+        const selectedCategory = this.state.categories.find(category => !!category.isToggled);
+        const unselectedCategories = this.state.categories.filter(category => !category.isToggled)
+        const selectedCategories = this.state.categories.filter(category => !!category.isToggled)
+        if (selectedCategories.length === 1) {
+            this.setState({
+                categories: unselectedCategories,
+                term: selectedCategory.term,
+                warning: 'Edit mode: please select a new name for your category',
+                plusText: 'Save'
+            })
         } else {
-            return;
+            this.setState({
+                warning: 'Please select only one category for editing it'
+            })
         }
     }
 
     logState = () => {
         console.log(this.state)
     }
+
     render() {
         return (
             <div className="categories">
@@ -72,7 +100,7 @@ class Categories extends Component {
                 </p>
                 <form className="categoryForm" onSubmit={this.addCategory}>
                     <input value={this.state.term} onChange={this.onInputChange} />
-                    <button>Add</button>
+                    <button>{this.state.plusText}</button>
                 </form>
                 {this.state.categories.map(({ id, term, isToggled }) =>
                     <button
@@ -83,6 +111,7 @@ class Categories extends Component {
                         onClick={this.toggle(id)}>
                         {term}</button>)
                 }
+                <p>{this.state.warning}</p>
                 <Link to="/">Go back to home page</Link>
                 <button onClick={this.logState}>Log State</button>
             </div >

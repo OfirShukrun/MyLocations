@@ -81,9 +81,8 @@ class Locations extends Component {
                     <p>Category : <select></select></p>
                     <button>Add</button>
                 </form>
-                <table>
-                    <tbody>
-
+                <table className="table">
+                    <tbody className="table-body">
                         {this.state.locations.map(({ id, name, address, isToggled }) =>
                             <button key={id}
                                 id={id}
