@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Landing from './Landing';
 import Categories from './Categories';
 import Locations from './Locations';
 import { Link } from 'react-router-dom';
+import { hot } from 'react-hot-loader';
 
 const FourOhFour = () => {
   return (
@@ -29,6 +31,6 @@ const App = () => {
   )
 };
 
-export default App;
+export default hot(module)(App)
 
 

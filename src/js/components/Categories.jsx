@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import CategoryList from './CategoryList';
+import Header from './Header';
+import Footer from './Footer';
 
 /**
- * All of the categories are stored in an array - this.state.categories.
+ * All of the categories are stored in an array - state.categories.
  * There are two modes for this unit that manipulated by the state object:
  * /1. editMode: true ; which is when the user chooses to edit category
  * /2. editMode: false ; Any other case.
- *
  */
 
 class Categories extends Component {
@@ -53,7 +54,7 @@ class Categories extends Component {
     addCategory = (event) => {
         event.preventDefault();
         if (this.state.editMode === false || this.state.term.length !== 0) {
-            if (this.state.term === "") {
+            if (this.state.term === '') {
                 this.setState({
                     warning: 'Please name your category!'
                 })
@@ -84,9 +85,9 @@ class Categories extends Component {
     }
 
     deleteCategory = () => {
+        const unselectedCategories = this.state.categories.filter(category => !category.isToggled)
         if (this.state.editMode === false) {
             if (this.state.categories.some(category => !!category.isToggled)) {
-                const unselectedCategories = this.state.categories.filter(category => !category.isToggled)
                 this.setState({
                     categories: unselectedCategories,
                     warning: ''
@@ -104,10 +105,10 @@ class Categories extends Component {
     /**In editMode, all of the buttons are unabled. */
 
     editCategory = () => {
+        const selectedCategory = this.state.categories.find(category => !!category.isToggled);
+        const unselectedCategories = this.state.categories.filter(category => !category.isToggled)
+        const selectedCategories = this.state.categories.filter(category => !!category.isToggled)
         if (this.state.editMode === false) {
-            const selectedCategory = this.state.categories.find(category => !!category.isToggled);
-            const unselectedCategories = this.state.categories.filter(category => !category.isToggled)
-            const selectedCategories = this.state.categories.filter(category => !!category.isToggled)
             if (selectedCategories.length === 1) {
                 this.setState({
                     categories: unselectedCategories,
@@ -132,32 +133,23 @@ class Categories extends Component {
     }
 
     render() {
+        const { term, plusText, categories, warning } = this.state
         return (
             <div className="categories">
-                <h1>Categories</h1>
-                <div className='actions'>
-                    <button className="delete" onClick={this.deleteCategory}>Delete</button>
-                    <button className="edit" onClick={this.editCategory}>Edit</button>
-                </div>
-                <p>To add a new category, please enter category name.
-                </p>
+                <Header deleteCategory={this.deleteCategory} editCategory={this.editCategory} />
                 <form className="categoryForm" onSubmit={this.addCategory}>
-                    <input value={this.state.term} ref={(input) => { this.nameInput = input; }} onChange={this.onInputChange} />
-                    <button>{this.state.plusText}</button>
+                    <input value={term} ref={(input) => { this.nameInput = input; }} onChange={this.onInputChange} />
+                    <button>{plusText}</button>
                 </form>
-                {this.state.categories.map(({ id, term, isToggled }) =>
-                    <button
-                        key={id}
-                        id={id}
-                        style={!isToggled ?
-                            { borderColor: '' } : { border: '2px solid red' }}
-                        onClick={this.toggle(id)}>
-                        {term}</button>)
+                {categories.map(categories =>
+                    <CategoryList key={categories.id} {...categories}
+                        toggle={this.toggle}
+                    />)
                 }
-                <p>{this.state.warning}</p>
-                <Link to="/">Go back to home page</Link>
+                <p>{warning}</p>
                 <button onClick={this.logState}>Log State</button>
-            </div>
+                <Footer />
+            </div >
         );
     }
 }
