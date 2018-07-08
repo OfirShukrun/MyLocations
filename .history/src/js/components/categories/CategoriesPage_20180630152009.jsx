@@ -11,24 +11,29 @@ export default class Categories extends Component {
             term: '',
             categories: []
         }
+        this.onInputChange = this.onInputChange.bind(this)
+        this.handleToggle = this.handleToggle.bind(this);
+        this.handleAddCategory = this.handleAddCategory.bind(this)
+        this.handleDeleteCategory = this.handleDeleteCategory.bind(this)
+        this.handleEditCategory = this.handleEditCategory.bind(this)
     }
 
-    onInputChange = (e) => {
+    onInputChange(e) {
         this.setState({ term: e.target.value });
     }
 
-    handleToggle = (categories) => {
+    handleToggle(categories) {
         this.setState({ categories })
     }
 
-    handleAddCategory = (categories) => {
+    handleAddCategory(categories) {
         this.setState({
             term: '',
             categories
         });
     }
 
-    handleDeleteCategory = (unselectedCategories) => {
+    handleDeleteCategory(unselectedCategories) {
         if (this.state.categories.some(category => !!category.isToggled)) {
             this.setState({
                 categories: unselectedCategories
@@ -36,7 +41,7 @@ export default class Categories extends Component {
         }
     }
 
-    handleEditCategory = (selectedCategories, unselectedCategories, selectedCategory) => {
+    handleEditCategory(selectedCategories, unselectedCategories, selectedCategory) {
         if (selectedCategories.length === 1) {
             this.setState({
                 categories: unselectedCategories,
