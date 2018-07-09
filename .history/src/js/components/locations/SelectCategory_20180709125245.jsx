@@ -10,11 +10,12 @@ export default class SelectCategory extends Component {
         var categories = JSON.parse(localStorage.getItem('categories'))
         return (
             <div>
+
                 <select name='selectedCategory' value={this.props.SelectCategory}
                     onChange={this.handleChange} >
                     <option value="" disabled selected>Select your Category</option>
                     {categories.map(category =>
-                        <option key={category.id} value={category.term}>{category.term}</option>
+                        <option value={category.term}>{category.term}</option>
                     )}
                 </select>
             </div>

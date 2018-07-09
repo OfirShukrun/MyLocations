@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CategoriesToolbar from '../categories/CategoriesToolbar';
 import CategoryList from './CategoryList';
 import Header from '../static/Header';
+import LocationsPage from '../locations/LocationsPage';
 
 export default class Categories extends Component {
 

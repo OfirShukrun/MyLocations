@@ -35,6 +35,7 @@ export default class LocationForm extends Component {
                             </td>
                             <td>
                                 <SelectCategory {...this.props}
+                                    categories={this.props.categories}
                                     handleChange={this.handleChange} />
                             </td>
                         </tr>

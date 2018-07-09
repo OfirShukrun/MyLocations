@@ -13,8 +13,14 @@ export default class Categories extends Component {
         }
     }
 
+    saveStateToLocalStorage() {
+        for (let key in this.state) {
+            localStorage.setItem(key, JSON.stringify(this.state[key]));
+        }
+    }
+
     componentDidMount() {
-        this.hydrateStateWithLocalStorage()
+        this.hydrateStateWithLocalStorage();
         window.addEventListener(
             "beforeunload",
             this.saveStateToLocalStorage.bind(this)
@@ -27,26 +33,6 @@ export default class Categories extends Component {
             this.saveStateToLocalStorage.bind(this)
         );
         this.saveStateToLocalStorage();
-    }
-
-    hydrateStateWithLocalStorage() {
-        for (let key in this.state) {
-            if (localStorage.hasOwnProperty(key)) {
-                let value = localStorage.getItem(key);
-                try {
-                    value = JSON.parse(value);
-                    this.setState({ [key]: value });
-                } catch (e) {
-                    this.setState({ [key]: value });
-                }
-            }
-        }
-    }
-
-    saveStateToLocalStorage() {
-        for (let key in this.state) {
-            localStorage.setItem(key, JSON.stringify(this.state[key]));
-        }
     }
 
     onInputChange = (e) => {
@@ -86,11 +72,12 @@ export default class Categories extends Component {
     }
 
     render() {
-        const { term, categories } = this.state
+        const { term, categories, count } = this.state
         return (
             <div className="categories">
                 <Header page={'categories'} />
                 <CategoriesToolbar term={term} categories={categories}
+                    count={count}
                     handleAddCategory={this.handleAddCategory}
                     handleDeleteCategory={this.handleDeleteCategory}
                     handleEditCategory={this.handleEditCategory}

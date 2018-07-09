@@ -86,11 +86,12 @@ export default class Categories extends Component {
     }
 
     render() {
-        const { term, categories } = this.state
+        const { term, categories, count } = this.state
         return (
             <div className="categories">
                 <Header page={'categories'} />
                 <CategoriesToolbar term={term} categories={categories}
+                    count={count}
                     handleAddCategory={this.handleAddCategory}
                     handleDeleteCategory={this.handleDeleteCategory}
                     handleEditCategory={this.handleEditCategory}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CategoriesToolbar from '../categories/CategoriesToolbar';
 import CategoryList from './CategoryList';
 import Header from '../static/Header';
+import LocationsPage from '../locations/LocationsPage';
 
 export default class Categories extends Component {
 
@@ -45,7 +46,7 @@ export default class Categories extends Component {
 
     saveStateToLocalStorage() {
         for (let key in this.state) {
-            localStorage.setItem(key, JSON.stringify(this.state[key]));
+            localStorage.setItem(category, JSON.stringify(this.state[key]));
         }
     }
 

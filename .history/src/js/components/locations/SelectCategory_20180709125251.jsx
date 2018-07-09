@@ -14,7 +14,7 @@ export default class SelectCategory extends Component {
                     onChange={this.handleChange} >
                     <option value="" disabled selected>Select your Category</option>
                     {categories.map(category =>
-                        <option key={category.id} value={category.term}>{category.term}</option>
+                        <option value={category.term}>{category.term}</option>
                     )}
                 </select>
             </div>

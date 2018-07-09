@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import CategoriesToolbar from '../categories/CategoriesToolbar';
 import CategoryList from './CategoryList';
 import Header from '../static/Header';
+import SelectCategory from '../locations/SelectCategory';
+import Locations from '../locations/LocationsPage';
 
 export default class Categories extends Component {
 
@@ -102,6 +104,7 @@ export default class Categories extends Component {
                     categories={categories}
                     handleToggle={this.handleToggle}
                 />
+                <LocationsPage categories={categories} />
                 <button onClick={this.logState}>Log</button>
             </div >
         );

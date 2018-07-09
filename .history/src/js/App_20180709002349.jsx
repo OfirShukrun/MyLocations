@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Categories from './components/categories/CategoriesPage'
 import Locations from './components/locations/LocationsPage'
+import EditLocationPage from './components/locations/EditLocationPage'
 import Footer from './components/static/Footer'
 import { Link } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
@@ -21,6 +22,7 @@ const App = () => (
       <Switch>
         <Route path='/categories' component={Categories} />
         <Route path='/locations' component={Locations} />
+        <Route path='/locations/:id' component={EditLocationPage} />
         <Route component={FourOhFour} />
       </Switch>
       <Footer />

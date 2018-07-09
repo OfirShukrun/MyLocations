@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PopupProperties from './PopupProperties';
 import ViewOnMap from './ViewOnMap';
+import EditLocationPopup from './EditLocationPopup';
 
 export default class LocationsList extends Component {
 
@@ -8,7 +9,8 @@ export default class LocationsList extends Component {
         super();
         this.state = {
             showPropertiesPopup: false,
-            showViewMapPopup: false
+            showViewMapPopup: false,
+            showEditLocationPopup: false
         };
     }
 
@@ -34,6 +36,12 @@ export default class LocationsList extends Component {
         this.setState({
             showViewMapPopup: !this.state.showViewMapPopup
         });
+    }
+
+    toggleEditLocationPopup = () => {
+        this.setState({
+            showEditLocationPopup: !this.state.showEditLocationPopup
+        })
     }
 
     logItemProps = () => {
@@ -70,9 +78,25 @@ export default class LocationsList extends Component {
                             />
                             : null
                         }
+
+                        <button onClick={this.toggleEditLocationPopup}>Edit Location</button>
+                        {this.state.showEditLocationPopup ?
+                            <EditLocationPopup
+                                locations={this.props.locations}
+                                handleChange={this.props.handleChange}
+                                handleEditLocation={this.props.handleEditLocation}
+                                id={location.id}
+                                name={location.name}
+                                address={location.address}
+                                longitude={location.longitude}
+                                latitude={location.latitude}
+                                closePopup={this.toggleEditLocationPopup}
+                            />
+                            : null
+                        }
                     </li>
                 )}
-                <button onClick={this.logItemProps}>Log Location Item props</button>
+                <button onClick={this.logItemProps}>Log LocationItem props</button>
             </div>
         )
     }

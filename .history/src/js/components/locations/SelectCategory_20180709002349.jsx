@@ -7,15 +7,13 @@ export default class SelectCategory extends Component {
     }
 
     render() {
-        var categories = JSON.parse(localStorage.getItem('categories'))
         return (
             <div>
                 <select name='selectedCategory' value={this.props.SelectCategory}
                     onChange={this.handleChange} >
                     <option value="" disabled selected>Select your Category</option>
-                    {categories.map(category =>
-                        <option key={category.id} value={category.term}>{category.term}</option>
-                    )}
+                    <option value="Restaurant">Restaurant</option>
+                    <option value="Mall">Mall</option>
                 </select>
             </div>
         )

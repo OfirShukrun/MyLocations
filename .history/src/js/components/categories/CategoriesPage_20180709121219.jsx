@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CategoriesToolbar from '../categories/CategoriesToolbar';
 import CategoryList from './CategoryList';
 import Header from '../static/Header';
+import LocationsPage from '../locations/LocationsPage';
 
 export default class Categories extends Component {
 
@@ -30,14 +31,14 @@ export default class Categories extends Component {
     }
 
     hydrateStateWithLocalStorage() {
-        for (let key in this.state) {
-            if (localStorage.hasOwnProperty(key)) {
-                let value = localStorage.getItem(key);
+        for (let category in this.state) {
+            if (localStorage.hasOwnProperty(category)) {
+                let value = localStorage.getItem(category);
                 try {
                     value = JSON.parse(value);
-                    this.setState({ [key]: value });
+                    this.setState({ category: value });
                 } catch (e) {
-                    this.setState({ [key]: value });
+                    this.setState({ category: value });
                 }
             }
         }

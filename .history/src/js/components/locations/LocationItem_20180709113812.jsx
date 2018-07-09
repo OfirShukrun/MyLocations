@@ -70,9 +70,10 @@ export default class LocationsList extends Component {
                             />
                             : null
                         }
+
                     </li>
                 )}
-                <button onClick={this.logItemProps}>Log Location Item props</button>
+                <button onClick={this.logItemProps}>Log LocationItem props</button>
             </div>
         )
     }

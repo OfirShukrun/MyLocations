@@ -36,6 +36,12 @@ export default class LocationsList extends Component {
         });
     }
 
+    toggleEditLocationPopup = () => {
+        this.setState({
+            showEditLocationPopup: !this.state.showEditLocationPopup
+        })
+    }
+
     logItemProps = () => {
         console.log(this.props)
     }
@@ -70,9 +76,10 @@ export default class LocationsList extends Component {
                             />
                             : null
                         }
+
                     </li>
                 )}
-                <button onClick={this.logItemProps}>Log Location Item props</button>
+                <button onClick={this.logItemProps}>Log LocationItem props</button>
             </div>
         )
     }

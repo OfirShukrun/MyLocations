@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CategoriesToolbar from '../categories/CategoriesToolbar';
 import CategoryList from './CategoryList';
 import Header from '../static/Header';
+import SelectCategory from '../locations/SelectCategory';
 
 export default class Categories extends Component {
 
@@ -86,11 +87,12 @@ export default class Categories extends Component {
     }
 
     render() {
-        const { term, categories } = this.state
+        const { term, categories, count } = this.state
         return (
             <div className="categories">
                 <Header page={'categories'} />
                 <CategoriesToolbar term={term} categories={categories}
+                    count={count}
                     handleAddCategory={this.handleAddCategory}
                     handleDeleteCategory={this.handleDeleteCategory}
                     handleEditCategory={this.handleEditCategory}
@@ -102,6 +104,7 @@ export default class Categories extends Component {
                     categories={categories}
                     handleToggle={this.handleToggle}
                 />
+                <SelectCategory categories={categories} />
                 <button onClick={this.logState}>Log</button>
             </div >
         );
