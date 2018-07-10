@@ -49,8 +49,8 @@ export default class Categories extends Component {
     }
     //End
 
-    onInputChange = (e) => {
-        this.setState({ term: e.target.value });
+    onInputChange = ({ target: { value: term }}) => {
+        this.setState({ term });
     }
 
     handleToggle = (categories) => {

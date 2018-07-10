@@ -7,17 +7,14 @@ import SortLocationsBy from './SortLocationsBy'
 
 export default class Locations extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: '',
-            address: '',
-            longitude: '',
-            latitude: '',
-            selectedCategory: '',
-            locations: []
-        };
-    }
+    state = {
+        name: '',
+        address: '',
+        longitude: '',
+        latitude: '',
+        selectedCategory: '',
+        locations: []
+    };
 
     //Save state to local storage
     componentDidMount() {
@@ -56,8 +53,8 @@ export default class Locations extends Component {
         }
     }
 
-    handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
+    handleChange = ({ target: { name, value }}) => {
+        this.setState({ [name]: value });
     }
 
     handleToggle = (locations) => {

@@ -53,20 +53,23 @@ export default class LocationsList extends Component {
 
                         <div key={Math.random()}>
                             <button onClick={this.togglePropertiesPopup}>Properties</button>
-                            {this.state.showPropertiesPopup ?
-                                <PopupProperties location={location}
-                                    closePopup={this.togglePropertiesPopup}
-                                />
-                                : null
+                            {
+                                this.state.showPropertiesPopup
+                                    ? <PopupProperties
+                                        location={location}
+                                        closePopup={this.togglePropertiesPopup}
+                                        />
+                                    : null
                             }
                             <button onClick={this.toggleViewMapPopup}>View on Map</button>
-                            {this.state.showViewMapPopup ?
-                                <ViewOnMap
-                                    latitude={location.latitude}
-                                    longitude={location.longitude}
-                                    closePopup={this.toggleViewMapPopup}
-                                />
-                                : null
+                            {
+                                this.state.showViewMapPopup
+                                    ? <ViewOnMap
+                                        latitude={location.latitude}
+                                        longitude={location.longitude}
+                                        closePopup={this.toggleViewMapPopup}
+                                        />
+                                    : null
                             }
                         </div>
                     ])
