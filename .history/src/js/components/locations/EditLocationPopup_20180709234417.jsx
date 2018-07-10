@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import LocationForm from './LocationForm';
-import './popup.css';
+import './popup.css'
 
-export default class EditLocationPage extends Component {
+export default class EditLocationPopup extends Component {
 
     constructor(props) {
         super(props);
@@ -34,7 +34,6 @@ export default class EditLocationPage extends Component {
         console.log(locations)
         this.props.handleEditLocation(locations)
     }
-
 
     render() {
         const { name, address, longitude, latitude } = this.state
