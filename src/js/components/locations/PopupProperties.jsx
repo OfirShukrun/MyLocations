@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import './popup.css'
 
-export default class PopupProperties extends Component {
+const PopupProperties = ({ name, address, longitude, latitude, selectedCategory, closePopup }) => 
+(
+    <div className='popup'>
+        <div className='popup_inner'>
+            <p>Name : { name }</p>
+            <p>Address : { address }</p>
+            <p>Longitude : { longitude }</p>
+            <p>Latitude : { latitude }</p>
+            <p>Selected category : { selectedCategory }</p>
+            <button onClick={ closePopup }>Close</button>
+        </div>
+    </div>
+)
 
-    render() {
-        const { name, address, longitude, latitude, selectedCategory } = this.props.location
-        return (
-            <div className='popup'>
-                <div className='popup_inner'>
-                    <p>Name : {name}</p>
-                    <p>Address : {address}</p>
-                    <p>Longitude : {longitude}</p>
-                    <p>Latitude : {latitude}</p>
-                    <p>Selected category : {selectedCategory}</p>
-                    <button onClick={this.props.closePopup}>Close</button>
-                </div>
-            </div>
-        )
-    }
-}
+export default PopupProperties;
