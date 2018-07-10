@@ -57,7 +57,7 @@ export default class OrderLocationsBy extends Component {
     return (
       <div>
         <select value={this.state.sortSelectValue} onChange={this.handleChange} >
-          <option value="" disabled selected>Order By</option>
+          <option defaultValue="" disabled>Order By</option>
           <option value="Date">Date</option>
           <option value="Name">Name</option>
           <option value="Category">Category</option>

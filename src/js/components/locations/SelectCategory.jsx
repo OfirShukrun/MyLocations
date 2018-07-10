@@ -18,7 +18,7 @@ export default class SelectCategory extends Component {
             <div>
                 <select name='selectedCategory' value={this.props.SelectCategory}
                     onChange={this.handleChange} >
-                    <option value="" disabled selected>Select your Category</option>
+                    <option defaultValue="" disabled>Select your Category</option>
                     { categories.map(this.renderCategoryOptions) }
                 </select>
             </div>
