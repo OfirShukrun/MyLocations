@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react'
 import './popup.css'
 
 const PopupProperties = ({ name, address, longitude, latitude, selectedCategory, closePopup }) => 
@@ -15,4 +15,4 @@ const PopupProperties = ({ name, address, longitude, latitude, selectedCategory,
     </div>
 )
 
-export default PopupProperties;
+export default PopupProperties
