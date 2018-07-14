@@ -16,10 +16,9 @@ export default class LocationsList extends Component {
         return (
             <div className="category-list">
                 {
-                    thereAreLocations ?
-                        this.renderLocationsList()
-                        :
-                        <p>Please fill in all the fields in order to create a new location</p>
+                    thereAreLocations
+                        ? this.renderLocationsList()
+                        : <p>Please fill in all the fields in order to create a new location</p>
                 }
             </div>
         );
